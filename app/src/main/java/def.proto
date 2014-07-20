@@ -1,0 +1,15 @@
+package uyjj.nicechat;
+
+option java_package = "uyjj.nicechat";
+option java_outer_classname = "NiceChatProtos";
+option optimize_for= LITE_RUNTIME;
+
+message User{
+    required string UserID      = 1;
+    required bytes  PasswordSHA = 2;
+    optional string Name        = 3;
+}
+
+message Contact{
+    required string name = 1;
+}
