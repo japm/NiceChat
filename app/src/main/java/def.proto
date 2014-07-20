@@ -13,3 +13,4 @@ message User{
 message Contact{
     required string name = 1;
 }
+

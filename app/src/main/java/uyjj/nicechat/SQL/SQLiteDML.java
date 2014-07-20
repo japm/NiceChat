@@ -1,4 +1,23 @@
+/*
+ * Copyright (C) 2014  Juan Pascual
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+
 package uyjj.nicechat.SQL;
+
 
 import android.content.Context;
 import android.database.Cursor;
@@ -11,9 +30,8 @@ import com.google.protobuf.MessageLite;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by juan on 7/20/14.
- */
+import uyjj.nicechat.Utils;
+
 public class SQLiteDML<T extends MessageLite>{
 
     private final SQLiteOpenHelper mDb;
@@ -48,13 +66,13 @@ public class SQLiteDML<T extends MessageLite>{
                     T obj = this.mParser.parseFrom(d);
                     retVal.add(obj);
                 } catch (InvalidProtocolBufferException e){
-
+                    Utils.Dummy();
                 }
                 cr.moveToNext();
             }
         } finally {
-            try{if (cr != null) cr.close();} catch (Exception e){}
-            try{if (db != null) db.close();} catch (Exception e){}
+            try{if (cr != null) cr.close();} catch (Exception e){Utils.Dummy();}
+            try{if (db != null) db.close();} catch (Exception e){Utils.Dummy();}
         }
 
         return retVal;
