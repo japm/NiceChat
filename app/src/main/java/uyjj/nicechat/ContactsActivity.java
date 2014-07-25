@@ -20,6 +20,7 @@ package uyjj.nicechat;
 
 import android.app.ListActivity;
 import android.app.LoaderManager;
+import android.content.Intent;
 import android.content.Loader;
 import android.os.Bundle;
 import android.view.Menu;
@@ -40,7 +41,7 @@ public class ContactsActivity extends ListActivity
         super.onCreate(savedInstanceState);
 
         mCa = new ContactAdapter(this,
-                                 getListView().getId(),
+                                 android.R.layout.simple_list_item_1,
                                  new ArrayList<NiceChatProtos.Contact>());
 
         setListAdapter(mCa);
@@ -66,6 +67,7 @@ public class ContactsActivity extends ListActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_create) {
+            transitionToCreateContract();
             return true;
         } else if (id == R.id.action_update) {
             return true;
@@ -73,6 +75,12 @@ public class ContactsActivity extends ListActivity
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void transitionToCreateContract() {
+        Intent intent = new Intent(this, ContactCRUDActivity.class);
+        intent.putExtra(Utils.USER_ID, 0);
+        this.startActivity(intent);
     }
 
 

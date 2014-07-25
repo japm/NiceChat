@@ -26,6 +26,10 @@
             android:name=".ContactsActivity"
             android:label="@string/title_activity_contacts" >
         </activity>
+        <activity
+            android:name=".ContactCRUDActivity"
+            android:label="@string/title_activity_contact_crud" >
+        </activity>
     </application>
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->

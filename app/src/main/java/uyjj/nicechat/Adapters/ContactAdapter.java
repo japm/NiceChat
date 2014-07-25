@@ -75,6 +75,7 @@ public class ContactAdapter extends ArrayAdapter<NiceChatProtos.Contact> {
 
     public void setContacts(List<NiceChatProtos.Contact> contacts) {
         this.mContacts = contacts;
+        notifyDataSetChanged();
     }
 
 }
