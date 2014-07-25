@@ -33,7 +33,6 @@ import uyjj.nicechat.R;
 public class ContactAdapter extends ArrayAdapter<NiceChatProtos.Contact> {
 
     private final Activity mContext;
-    private List<NiceChatProtos.Contact> mContacts;
 
 
     static class ViewHolder {
@@ -45,9 +44,7 @@ public class ContactAdapter extends ArrayAdapter<NiceChatProtos.Contact> {
     public ContactAdapter(Activity context, int resource, List<NiceChatProtos.Contact> contacts) {
         super(context, resource, contacts);
         this.mContext = context;
-        this.mContacts = contacts;
     }
-
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -66,7 +63,7 @@ public class ContactAdapter extends ArrayAdapter<NiceChatProtos.Contact> {
 
         // fill data
         ViewHolder holder = (ViewHolder) rowView.getTag();
-        String s = mContacts.get(position).getName();
+        String s = this.getItem(position).getName();
         holder.text.setText(s);
         holder.image.setImageResource(R.drawable.ic_launcher);
 
@@ -74,8 +71,8 @@ public class ContactAdapter extends ArrayAdapter<NiceChatProtos.Contact> {
     }
 
     public void setContacts(List<NiceChatProtos.Contact> contacts) {
-        this.mContacts = contacts;
-        notifyDataSetChanged();
+        this.clear();
+        this.addAll(contacts);
     }
 
 }
