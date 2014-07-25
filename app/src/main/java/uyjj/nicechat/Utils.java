@@ -22,6 +22,8 @@ import java.io.UnsupportedEncodingException;
 
 public class Utils {
 
+    public static final String USER_ID = "USER_ID";
+
     public static byte[] SHA512(String toEncode) throws java.security.NoSuchAlgorithmException{
 
         if (toEncode == null)
