@@ -52,7 +52,7 @@ public class SQLiteDML<T extends MessageLite>{
         List<T>        retVal = new ArrayList<T>();
         try{
             db = mDb.getReadableDatabase();
-            cr = db.rawQuery("select data from " + mTable, null);
+            cr = db.rawQuery("select data from " + mTable , null);
             if (cr == null)
                 return retVal;
             cr.moveToFirst();
@@ -78,4 +78,60 @@ public class SQLiteDML<T extends MessageLite>{
         return retVal;
     }
 
+    public T query(int id) {
+        SQLiteDatabase db = null;
+        Cursor cr = null;
+        T      retVal = null;
+        try{
+            db = mDb.getReadableDatabase();
+            cr = db.rawQuery("select data from " + mTable +" where id = ?", new String[]{ Integer.toString(id)});
+            if (cr == null)
+                return retVal;
+            cr.moveToFirst();
+            if (!cr.isAfterLast())
+                return retVal;
+
+            byte[] d = cr.getBlob(0);
+            if (d == null)
+                return retVal;
+
+            try {
+                retVal = this.mParser.parseFrom(d);
+            } catch (InvalidProtocolBufferException e){
+                Utils.Dummy();
+            }
+
+        } finally {
+            try{if (cr != null) cr.close();} catch (Exception e){Utils.Dummy();}
+            try{if (db != null) db.close();} catch (Exception e){Utils.Dummy();}
+        }
+
+        return retVal;
+    }
+
+    public void insert(T obj) {
+        if (obj == null)
+            return ;
+
+        SQLiteDatabase db = null;
+        try{
+            db = mDb.getReadableDatabase();
+            db.execSQL("insert into " + mTable + " (Data) values(?)", new Object[]{ obj.toByteArray() });
+        } finally {
+            try{if (db != null) db.close();} catch (Exception e){Utils.Dummy();}
+        }
+    }
+
+    public void update(int id, T obj) {
+        if (obj == null)
+            return;
+
+        SQLiteDatabase db = null;
+        try{
+            db = mDb.getReadableDatabase();
+            db.execSQL("update " + mTable + " set Data = ? where id =  ?", new Object[]{ obj.toByteArray(), id });
+        } finally {
+            try{if (db != null) db.close();} catch (Exception e){Utils.Dummy();}
+        }
+    }
 }
