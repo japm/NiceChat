@@ -83,6 +83,15 @@ public class ContactsActivity extends ListActivity
         this.startActivity(intent);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Loader l = getLoaderManager().getLoader(0);
+        if (l == null)
+            return;
+
+        l.forceLoad();
+    }
 
     @Override
     public Loader<List<NiceChatProtos.Contact>> onCreateLoader(int i, Bundle bundle) {
