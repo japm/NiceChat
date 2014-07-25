@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2014  Juan Pascual
  *
  * This program is free software; you can redistribute it and/or
