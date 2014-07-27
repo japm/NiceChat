@@ -42,17 +42,17 @@ public class SQLiteDML<T extends MessageLite>{
                      String table,
                      com.google.protobuf.Parser<T> parser){
         this.mDb = new SQLiteDDL(context);
-        this.mTable = table;
+        this.mTable  = table;
         this.mParser = parser;
     }
 
-    public List<T> query() {
-        SQLiteDatabase db = null;
-        Cursor cr = null;
-        List<T>        retVal = new ArrayList<T>();
+    public List<SQLiteRow<T>> query() {
+        SQLiteDatabase     db = null;
+        Cursor             cr = null;
+        List<SQLiteRow<T>> retVal = new ArrayList<SQLiteRow<T>>();
         try{
             db = mDb.getReadableDatabase();
-            cr = db.rawQuery("select data from " + mTable , null);
+            cr = db.rawQuery("select data, id from " + mTable , null);
             if (cr == null)
                 return retVal;
             cr.moveToFirst();
@@ -64,7 +64,8 @@ public class SQLiteDML<T extends MessageLite>{
                 }
                 try {
                     T obj = this.mParser.parseFrom(d);
-                    retVal.add(obj);
+                    SQLiteRow<T> row = new SQLiteRow<T>(cr.getInt(1), obj);
+                    retVal.add(row);
                 } catch (InvalidProtocolBufferException e){
                     Utils.Dummy();
                 }
@@ -80,15 +81,15 @@ public class SQLiteDML<T extends MessageLite>{
 
     public T query(int id) {
         SQLiteDatabase db = null;
-        Cursor cr = null;
-        T      retVal = null;
+        Cursor         cr = null;
+        T              retVal = null;
         try{
             db = mDb.getReadableDatabase();
             cr = db.rawQuery("select data from " + mTable +" where id = ?", new String[]{ Integer.toString(id)});
             if (cr == null)
                 return retVal;
             cr.moveToFirst();
-            if (!cr.isAfterLast())
+            if (cr.isAfterLast())
                 return retVal;
 
             byte[] d = cr.getBlob(0);

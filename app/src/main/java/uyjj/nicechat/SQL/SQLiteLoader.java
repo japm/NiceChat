@@ -24,10 +24,10 @@ import com.google.protobuf.MessageLite;
 
 import java.util.List;
 
-public class SQLiteLoader<T extends MessageLite> extends AsyncTaskLoader<List<T>> {
+public class SQLiteLoader<T extends MessageLite> extends AsyncTaskLoader<List<SQLiteRow<T>>> {
 
     private final SQLiteDML mDML;
-    private List<T>         mResult;
+    private List<SQLiteRow<T>>         mResult;
 
 
     public  SQLiteLoader(Context context,
@@ -41,14 +41,12 @@ public class SQLiteLoader<T extends MessageLite> extends AsyncTaskLoader<List<T>
 
 
     @Override
-    public List<T> loadInBackground() {
+    public List<SQLiteRow<T>> loadInBackground() {
         return this.mDML.query();
     }
 
-
-
     @Override
-    public void deliverResult(List<T> list) {
+    public void deliverResult(List<SQLiteRow<T>> list) {
         if (isReset()) {
             mResult = null;
             return;
@@ -79,7 +77,7 @@ public class SQLiteLoader<T extends MessageLite> extends AsyncTaskLoader<List<T>
     }
 
     @Override
-    public void onCanceled(List<T> cursor) {
+    public void onCanceled(List<SQLiteRow<T>> cursor) {
         mResult = null;
     }
 
