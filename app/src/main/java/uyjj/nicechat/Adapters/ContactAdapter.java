@@ -29,8 +29,9 @@ import java.util.List;
 
 import uyjj.nicechat.NiceChatProtos;
 import uyjj.nicechat.R;
+import uyjj.nicechat.SQL.SQLiteRow;
 
-public class ContactAdapter extends ArrayAdapter<NiceChatProtos.Contact> {
+public class ContactAdapter extends ArrayAdapter<SQLiteRow<NiceChatProtos.Contact>> {
 
     private final Activity mContext;
 
@@ -41,7 +42,7 @@ public class ContactAdapter extends ArrayAdapter<NiceChatProtos.Contact> {
     }
 
 
-    public ContactAdapter(Activity context, int resource, List<NiceChatProtos.Contact> contacts) {
+    public ContactAdapter(Activity context, int resource, List<SQLiteRow<NiceChatProtos.Contact>> contacts) {
         super(context, resource, contacts);
         this.mContext = context;
     }
@@ -49,28 +50,31 @@ public class ContactAdapter extends ArrayAdapter<NiceChatProtos.Contact> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View rowView = convertView;
+        ViewHolder holder;
         // reuse views
         if (rowView == null) {
             LayoutInflater inflater = this.mContext.getLayoutInflater();
             rowView = inflater.inflate(R.layout.contacts_layout, null);
+
             // configure view holder
-            ViewHolder viewHolder = new ViewHolder();
-            viewHolder.text = (TextView) rowView.findViewById(R.id.textContact);
-            viewHolder.image = (ImageView) rowView
+            holder = new ViewHolder();
+            holder.text = (TextView) rowView.findViewById(R.id.textContact);
+            holder.image = (ImageView) rowView
                     .findViewById(R.id.iconContact);
-            rowView.setTag(viewHolder);
+            rowView.setTag(holder);
+        } else {
+            holder = (ViewHolder) rowView.getTag();
         }
 
         // fill data
-        ViewHolder holder = (ViewHolder) rowView.getTag();
-        String s = this.getItem(position).getName();
+        String s = this.getItem(position).getData().getName();
         holder.text.setText(s);
         holder.image.setImageResource(R.drawable.ic_launcher);
 
         return rowView;
     }
 
-    public void setContacts(List<NiceChatProtos.Contact> contacts) {
+    public void setContacts(List<SQLiteRow<NiceChatProtos.Contact>> contacts) {
         this.clear();
         this.addAll(contacts);
     }

@@ -5,10 +5,8 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ContentValues;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -21,9 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-
 import com.google.protobuf.ByteString;
-import com.google.protobuf.InvalidProtocolBufferException;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
@@ -31,7 +27,7 @@ import java.util.List;
 
 import uyjj.nicechat.SQL.SQLiteDDL;
 import uyjj.nicechat.SQL.SQLiteDML;
-import uyjj.nicechat.SQL.SQLiteLoader;
+import uyjj.nicechat.SQL.SQLiteRow;
 
 /**
  * A login screen that offers login via email/password.
@@ -269,9 +265,10 @@ public class LoginActivity extends Activity {
 
             SQLiteDML<NiceChatProtos.User> db =
                     new SQLiteDML<NiceChatProtos.User>(mLogAct, "User", NiceChatProtos.User.PARSER);
-            List<NiceChatProtos.User> users = db.query();
+            List<SQLiteRow<NiceChatProtos.User>> users = db.query();
             byte[] pwDb512 = new byte[64];
-            for(NiceChatProtos.User usr : users){
+            for(SQLiteRow<NiceChatProtos.User> usrRow : users){
+                NiceChatProtos.User usr = usrRow.getData();
                 usr.getPasswordSHA().copyTo(pwDb512, 0);
                 if (Arrays.equals(pwDb512, pw512)) {
                     ses.setUserId(usr.getUserID());

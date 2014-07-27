@@ -23,17 +23,21 @@ import android.app.LoaderManager;
 import android.content.Intent;
 import android.content.Loader;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import uyjj.nicechat.Adapters.ContactAdapter;
 import uyjj.nicechat.SQL.SQLiteLoader;
+import uyjj.nicechat.SQL.SQLiteRow;
 
 public class ContactsActivity extends ListActivity
-        implements LoaderManager.LoaderCallbacks<List<NiceChatProtos.Contact>>{
+        implements LoaderManager.LoaderCallbacks<List<SQLiteRow<NiceChatProtos.Contact>>>{
 
     ContactAdapter mCa;
     @Override
@@ -42,13 +46,15 @@ public class ContactsActivity extends ListActivity
 
         mCa = new ContactAdapter(this,
                                  android.R.layout.simple_list_item_1,
-                                 new ArrayList<NiceChatProtos.Contact>());
+                                 new ArrayList<SQLiteRow<NiceChatProtos.Contact>>());
 
         setListAdapter(mCa);
 
         getLoaderManager().initLoader(0, null, this);
 
         setContentView(R.layout.activity_contacts);
+
+        registerForContextMenu(getListView());
 
     }
 
@@ -61,20 +67,54 @@ public class ContactsActivity extends ListActivity
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_create) {
             transitionToCreateContract();
             return true;
         } else if (id == R.id.action_update) {
+            AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item
+                    .getMenuInfo();
+            SQLiteRow<NiceChatProtos.Contact> contact = mCa.getItem(menuInfo.position);
+
+            Intent intent = new Intent(this, ContactCRUDActivity.class);
+            intent.putExtra(Utils.USER_ID, contact.getId());
+            this.startActivity(intent);
+
+            return true;
+        }else if (id == R.id.action_delete) {
+            return true;
+        }
+        return super.onMenuItemSelected(featureId, item);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_create) {
+            transitionToCreateContract();
+            return true;
+        } else if (id == R.id.action_update) {
+            AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item
+                    .getMenuInfo();
+            SQLiteRow<NiceChatProtos.Contact> contact = mCa.getItem(menuInfo.position);
+
+            Intent intent = new Intent(this, ContactCRUDActivity.class);
+            intent.putExtra(Utils.USER_ID, contact.getId());
+            this.startActivity(intent);
+
             return true;
         }else if (id == R.id.action_delete) {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        if (v.getId() == getListView().getId()){
+            getMenuInflater().inflate(R.menu.contacts_updel, menu);
+        }
     }
 
     private void transitionToCreateContract() {
@@ -94,17 +134,17 @@ public class ContactsActivity extends ListActivity
     }
 
     @Override
-    public Loader<List<NiceChatProtos.Contact>> onCreateLoader(int i, Bundle bundle) {
+    public Loader<List<SQLiteRow<NiceChatProtos.Contact>>> onCreateLoader(int i, Bundle bundle) {
         return new SQLiteLoader<NiceChatProtos.Contact>(this, "Contact", NiceChatProtos.Contact.PARSER);
     }
 
     @Override
-    public void onLoadFinished(Loader<List<NiceChatProtos.Contact>> listLoader, List<NiceChatProtos.Contact> contacts) {
+    public void onLoadFinished(Loader<List<SQLiteRow<NiceChatProtos.Contact>>> listLoader, List<SQLiteRow<NiceChatProtos.Contact>> contacts) {
         mCa.setContacts(contacts);
     }
 
     @Override
-    public void onLoaderReset(Loader<List<NiceChatProtos.Contact>> listLoader) {
-        mCa.setContacts(new ArrayList<NiceChatProtos.Contact>());
+    public void onLoaderReset(Loader<List<SQLiteRow<NiceChatProtos.Contact>>> listLoader) {
+        mCa.setContacts(new ArrayList<SQLiteRow<NiceChatProtos.Contact>>());
     }
 }
