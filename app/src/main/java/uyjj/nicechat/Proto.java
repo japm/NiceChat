@@ -3,8 +3,8 @@
 
 package uyjj.nicechat;
 
-public final class NiceChatProtos {
-  private NiceChatProtos() {}
+public final class Proto {
+  private Proto() {}
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistryLite registry) {
   }
@@ -303,53 +303,53 @@ public final class NiceChatProtos {
       return super.writeReplace();
     }
 
-    public static uyjj.nicechat.NiceChatProtos.User parseFrom(
+    public static uyjj.nicechat.Proto.User parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static uyjj.nicechat.NiceChatProtos.User parseFrom(
+    public static uyjj.nicechat.Proto.User parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static uyjj.nicechat.NiceChatProtos.User parseFrom(byte[] data)
+    public static uyjj.nicechat.Proto.User parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static uyjj.nicechat.NiceChatProtos.User parseFrom(
+    public static uyjj.nicechat.Proto.User parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static uyjj.nicechat.NiceChatProtos.User parseFrom(java.io.InputStream input)
+    public static uyjj.nicechat.Proto.User parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static uyjj.nicechat.NiceChatProtos.User parseFrom(
+    public static uyjj.nicechat.Proto.User parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static uyjj.nicechat.NiceChatProtos.User parseDelimitedFrom(java.io.InputStream input)
+    public static uyjj.nicechat.Proto.User parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static uyjj.nicechat.NiceChatProtos.User parseDelimitedFrom(
+    public static uyjj.nicechat.Proto.User parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static uyjj.nicechat.NiceChatProtos.User parseFrom(
+    public static uyjj.nicechat.Proto.User parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static uyjj.nicechat.NiceChatProtos.User parseFrom(
+    public static uyjj.nicechat.Proto.User parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -358,7 +358,7 @@ public final class NiceChatProtos {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(uyjj.nicechat.NiceChatProtos.User prototype) {
+    public static Builder newBuilder(uyjj.nicechat.Proto.User prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -368,9 +368,9 @@ public final class NiceChatProtos {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          uyjj.nicechat.NiceChatProtos.User, Builder>
-        implements uyjj.nicechat.NiceChatProtos.UserOrBuilder {
-      // Construct using uyjj.nicechat.NiceChatProtos.User.newBuilder()
+          uyjj.nicechat.Proto.User, Builder>
+        implements uyjj.nicechat.Proto.UserOrBuilder {
+      // Construct using uyjj.nicechat.Proto.User.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -396,20 +396,20 @@ public final class NiceChatProtos {
         return create().mergeFrom(buildPartial());
       }
 
-      public uyjj.nicechat.NiceChatProtos.User getDefaultInstanceForType() {
-        return uyjj.nicechat.NiceChatProtos.User.getDefaultInstance();
+      public uyjj.nicechat.Proto.User getDefaultInstanceForType() {
+        return uyjj.nicechat.Proto.User.getDefaultInstance();
       }
 
-      public uyjj.nicechat.NiceChatProtos.User build() {
-        uyjj.nicechat.NiceChatProtos.User result = buildPartial();
+      public uyjj.nicechat.Proto.User build() {
+        uyjj.nicechat.Proto.User result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public uyjj.nicechat.NiceChatProtos.User buildPartial() {
-        uyjj.nicechat.NiceChatProtos.User result = new uyjj.nicechat.NiceChatProtos.User(this);
+      public uyjj.nicechat.Proto.User buildPartial() {
+        uyjj.nicechat.Proto.User result = new uyjj.nicechat.Proto.User(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -428,8 +428,8 @@ public final class NiceChatProtos {
         return result;
       }
 
-      public Builder mergeFrom(uyjj.nicechat.NiceChatProtos.User other) {
-        if (other == uyjj.nicechat.NiceChatProtos.User.getDefaultInstance()) return this;
+      public Builder mergeFrom(uyjj.nicechat.Proto.User other) {
+        if (other == uyjj.nicechat.Proto.User.getDefaultInstance()) return this;
         if (other.hasUserID()) {
           bitField0_ |= 0x00000001;
           userID_ = other.userID_;
@@ -462,11 +462,11 @@ public final class NiceChatProtos {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        uyjj.nicechat.NiceChatProtos.User parsedMessage = null;
+        uyjj.nicechat.Proto.User parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (uyjj.nicechat.NiceChatProtos.User) e.getUnfinishedMessage();
+          parsedMessage = (uyjj.nicechat.Proto.User) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -853,53 +853,53 @@ public final class NiceChatProtos {
       return super.writeReplace();
     }
 
-    public static uyjj.nicechat.NiceChatProtos.Contact parseFrom(
+    public static uyjj.nicechat.Proto.Contact parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static uyjj.nicechat.NiceChatProtos.Contact parseFrom(
+    public static uyjj.nicechat.Proto.Contact parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static uyjj.nicechat.NiceChatProtos.Contact parseFrom(byte[] data)
+    public static uyjj.nicechat.Proto.Contact parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static uyjj.nicechat.NiceChatProtos.Contact parseFrom(
+    public static uyjj.nicechat.Proto.Contact parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static uyjj.nicechat.NiceChatProtos.Contact parseFrom(java.io.InputStream input)
+    public static uyjj.nicechat.Proto.Contact parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static uyjj.nicechat.NiceChatProtos.Contact parseFrom(
+    public static uyjj.nicechat.Proto.Contact parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static uyjj.nicechat.NiceChatProtos.Contact parseDelimitedFrom(java.io.InputStream input)
+    public static uyjj.nicechat.Proto.Contact parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static uyjj.nicechat.NiceChatProtos.Contact parseDelimitedFrom(
+    public static uyjj.nicechat.Proto.Contact parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static uyjj.nicechat.NiceChatProtos.Contact parseFrom(
+    public static uyjj.nicechat.Proto.Contact parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static uyjj.nicechat.NiceChatProtos.Contact parseFrom(
+    public static uyjj.nicechat.Proto.Contact parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -908,7 +908,7 @@ public final class NiceChatProtos {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(uyjj.nicechat.NiceChatProtos.Contact prototype) {
+    public static Builder newBuilder(uyjj.nicechat.Proto.Contact prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -918,9 +918,9 @@ public final class NiceChatProtos {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          uyjj.nicechat.NiceChatProtos.Contact, Builder>
-        implements uyjj.nicechat.NiceChatProtos.ContactOrBuilder {
-      // Construct using uyjj.nicechat.NiceChatProtos.Contact.newBuilder()
+          uyjj.nicechat.Proto.Contact, Builder>
+        implements uyjj.nicechat.Proto.ContactOrBuilder {
+      // Construct using uyjj.nicechat.Proto.Contact.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -942,20 +942,20 @@ public final class NiceChatProtos {
         return create().mergeFrom(buildPartial());
       }
 
-      public uyjj.nicechat.NiceChatProtos.Contact getDefaultInstanceForType() {
-        return uyjj.nicechat.NiceChatProtos.Contact.getDefaultInstance();
+      public uyjj.nicechat.Proto.Contact getDefaultInstanceForType() {
+        return uyjj.nicechat.Proto.Contact.getDefaultInstance();
       }
 
-      public uyjj.nicechat.NiceChatProtos.Contact build() {
-        uyjj.nicechat.NiceChatProtos.Contact result = buildPartial();
+      public uyjj.nicechat.Proto.Contact build() {
+        uyjj.nicechat.Proto.Contact result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public uyjj.nicechat.NiceChatProtos.Contact buildPartial() {
-        uyjj.nicechat.NiceChatProtos.Contact result = new uyjj.nicechat.NiceChatProtos.Contact(this);
+      public uyjj.nicechat.Proto.Contact buildPartial() {
+        uyjj.nicechat.Proto.Contact result = new uyjj.nicechat.Proto.Contact(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -966,8 +966,8 @@ public final class NiceChatProtos {
         return result;
       }
 
-      public Builder mergeFrom(uyjj.nicechat.NiceChatProtos.Contact other) {
-        if (other == uyjj.nicechat.NiceChatProtos.Contact.getDefaultInstance()) return this;
+      public Builder mergeFrom(uyjj.nicechat.Proto.Contact other) {
+        if (other == uyjj.nicechat.Proto.Contact.getDefaultInstance()) return this;
         if (other.hasName()) {
           bitField0_ |= 0x00000001;
           name_ = other.name_;
@@ -988,11 +988,11 @@ public final class NiceChatProtos {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        uyjj.nicechat.NiceChatProtos.Contact parsedMessage = null;
+        uyjj.nicechat.Proto.Contact parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (uyjj.nicechat.NiceChatProtos.Contact) e.getUnfinishedMessage();
+          parsedMessage = (uyjj.nicechat.Proto.Contact) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {

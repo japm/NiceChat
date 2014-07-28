@@ -31,7 +31,7 @@ import uyjj.nicechat.SQL.SQLiteDML;
 public class ContactCRUDActivity extends Activity {
 
     int mUserId = 0;
-    NiceChatProtos.Contact mContact;
+    Proto.Contact mContact;
     EditText mName;
     Button   mSave;
     SQLiteDML dbContact;
@@ -43,19 +43,19 @@ public class ContactCRUDActivity extends Activity {
         setContentView(R.layout.activity_contact_crud);
         thisApp = this;
 
-        dbContact = new SQLiteDML<NiceChatProtos.Contact>(this, "Contact", NiceChatProtos.Contact.PARSER );
+        dbContact = new SQLiteDML<Proto.Contact>(this, "Contact", Proto.Contact.PARSER );
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             mUserId = extras.getInt(Utils.USER_ID);
         }
         if (mUserId > 0){
-            mContact = (NiceChatProtos.Contact)dbContact.query(mUserId);
+            mContact = (Proto.Contact)dbContact.query(mUserId);
         }
         mName = (EditText) this.findViewById(R.id.txtName);
 
         if (mContact == null){
-            NiceChatProtos.Contact.Builder b = NiceChatProtos.Contact.newBuilder();
+            Proto.Contact.Builder b = Proto.Contact.newBuilder();
             b.setName("");
             mContact = b.build();
         } else {
@@ -67,7 +67,7 @@ public class ContactCRUDActivity extends Activity {
             new View.OnClickListener(){
                 @Override
                 public void onClick(View view) {
-                    NiceChatProtos.Contact.Builder b = NiceChatProtos.Contact.newBuilder();
+                    Proto.Contact.Builder b = Proto.Contact.newBuilder();
                     b.setName(mName.getText().toString());
                     mContact = b.build();
                     if (mUserId == 0)

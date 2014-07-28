@@ -1,7 +1,7 @@
 package uyjj.nicechat;
 
 option java_package = "uyjj.nicechat";
-option java_outer_classname = "NiceChatProtos";
+option java_outer_classname = "Proto";
 option optimize_for= LITE_RUNTIME;
 
 message User{

@@ -27,11 +27,11 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import uyjj.nicechat.NiceChatProtos;
+import uyjj.nicechat.Proto;
 import uyjj.nicechat.R;
 import uyjj.nicechat.SQL.SQLiteRow;
 
-public class ContactAdapter extends ArrayAdapter<SQLiteRow<NiceChatProtos.Contact>> {
+public class ContactAdapter extends ArrayAdapter<SQLiteRow<Proto.Contact>> {
 
     private final Activity mContext;
 
@@ -42,7 +42,7 @@ public class ContactAdapter extends ArrayAdapter<SQLiteRow<NiceChatProtos.Contac
     }
 
 
-    public ContactAdapter(Activity context, int resource, List<SQLiteRow<NiceChatProtos.Contact>> contacts) {
+    public ContactAdapter(Activity context, int resource, List<SQLiteRow<Proto.Contact>> contacts) {
         super(context, resource, contacts);
         this.mContext = context;
     }
@@ -74,7 +74,7 @@ public class ContactAdapter extends ArrayAdapter<SQLiteRow<NiceChatProtos.Contac
         return rowView;
     }
 
-    public void setContacts(List<SQLiteRow<NiceChatProtos.Contact>> contacts) {
+    public void setContacts(List<SQLiteRow<Proto.Contact>> contacts) {
         this.clear();
         this.addAll(contacts);
     }

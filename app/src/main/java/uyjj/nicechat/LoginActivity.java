@@ -263,12 +263,12 @@ public class LoginActivity extends Activity {
             if (pw512 == null)
                 return; //Utf-8 not valid nearly impossible
 
-            SQLiteDML<NiceChatProtos.User> db =
-                    new SQLiteDML<NiceChatProtos.User>(mLogAct, "User", NiceChatProtos.User.PARSER);
-            List<SQLiteRow<NiceChatProtos.User>> users = db.query();
+            SQLiteDML<Proto.User> db =
+                    new SQLiteDML<Proto.User>(mLogAct, "User", Proto.User.PARSER);
+            List<SQLiteRow<Proto.User>> users = db.query();
             byte[] pwDb512 = new byte[64];
-            for(SQLiteRow<NiceChatProtos.User> usrRow : users){
-                NiceChatProtos.User usr = usrRow.getData();
+            for(SQLiteRow<Proto.User> usrRow : users){
+                Proto.User usr = usrRow.getData();
                 usr.getPasswordSHA().copyTo(pwDb512, 0);
                 if (Arrays.equals(pwDb512, pw512)) {
                     ses.setUserId(usr.getUserID());
@@ -289,12 +289,12 @@ public class LoginActivity extends Activity {
                     pw512 = null;
                 }
 
-                NiceChatProtos.User.Builder b = NiceChatProtos.User.newBuilder();
+                Proto.User.Builder b = Proto.User.newBuilder();
                 b.setName(this.mEmail);
                 b.setPasswordSHA(ByteString.copyFrom(pw512));
                 b.setUserID(this.mEmail);
 
-                NiceChatProtos.User usr = b.build();
+                Proto.User usr = b.build();
 
                 ContentValues values = new ContentValues();
                 values.put("data", usr.toByteArray());

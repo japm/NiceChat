@@ -37,7 +37,7 @@ import uyjj.nicechat.SQL.SQLiteLoader;
 import uyjj.nicechat.SQL.SQLiteRow;
 
 public class ContactsActivity extends ListActivity
-        implements LoaderManager.LoaderCallbacks<List<SQLiteRow<NiceChatProtos.Contact>>>{
+        implements LoaderManager.LoaderCallbacks<List<SQLiteRow<Proto.Contact>>>{
 
     ContactAdapter mCa;
     @Override
@@ -46,7 +46,7 @@ public class ContactsActivity extends ListActivity
 
         mCa = new ContactAdapter(this,
                                  android.R.layout.simple_list_item_1,
-                                 new ArrayList<SQLiteRow<NiceChatProtos.Contact>>());
+                                 new ArrayList<SQLiteRow<Proto.Contact>>());
 
         setListAdapter(mCa);
 
@@ -75,7 +75,7 @@ public class ContactsActivity extends ListActivity
         } else if (id == R.id.action_update) {
             AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item
                     .getMenuInfo();
-            SQLiteRow<NiceChatProtos.Contact> contact = mCa.getItem(menuInfo.position);
+            SQLiteRow<Proto.Contact> contact = mCa.getItem(menuInfo.position);
 
             Intent intent = new Intent(this, ContactCRUDActivity.class);
             intent.putExtra(Utils.USER_ID, contact.getId());
@@ -97,7 +97,7 @@ public class ContactsActivity extends ListActivity
         } else if (id == R.id.action_update) {
             AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item
                     .getMenuInfo();
-            SQLiteRow<NiceChatProtos.Contact> contact = mCa.getItem(menuInfo.position);
+            SQLiteRow<Proto.Contact> contact = mCa.getItem(menuInfo.position);
 
             Intent intent = new Intent(this, ContactCRUDActivity.class);
             intent.putExtra(Utils.USER_ID, contact.getId());
@@ -134,17 +134,17 @@ public class ContactsActivity extends ListActivity
     }
 
     @Override
-    public Loader<List<SQLiteRow<NiceChatProtos.Contact>>> onCreateLoader(int i, Bundle bundle) {
-        return new SQLiteLoader<NiceChatProtos.Contact>(this, "Contact", NiceChatProtos.Contact.PARSER);
+    public Loader<List<SQLiteRow<Proto.Contact>>> onCreateLoader(int i, Bundle bundle) {
+        return new SQLiteLoader<Proto.Contact>(this, "Contact", Proto.Contact.PARSER);
     }
 
     @Override
-    public void onLoadFinished(Loader<List<SQLiteRow<NiceChatProtos.Contact>>> listLoader, List<SQLiteRow<NiceChatProtos.Contact>> contacts) {
+    public void onLoadFinished(Loader<List<SQLiteRow<Proto.Contact>>> listLoader, List<SQLiteRow<Proto.Contact>> contacts) {
         mCa.setContacts(contacts);
     }
 
     @Override
-    public void onLoaderReset(Loader<List<SQLiteRow<NiceChatProtos.Contact>>> listLoader) {
-        mCa.setContacts(new ArrayList<SQLiteRow<NiceChatProtos.Contact>>());
+    public void onLoaderReset(Loader<List<SQLiteRow<Proto.Contact>>> listLoader) {
+        mCa.setContacts(new ArrayList<SQLiteRow<Proto.Contact>>());
     }
 }
